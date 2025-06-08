@@ -1,0 +1,37 @@
+---
+export interface HeroProps {
+  imageUrl?: string;
+  heading?: string;
+  subheading?: string;
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+const {
+  imageUrl = "/images/instagram/Hero.jpg",
+  heading = "Sohana Photography",
+  subheading = "Capturing the moments that matter",
+  ctaText = "View Portfolio",
+  ctaHref = "/portfolio",
+} = Astro.props;
+---
+
+<section
+  class="relative w-full h-screen bg-cover bg-center text-white"
+  style={`background-image: url(${imageUrl})`}
+>
+  <div class="absolute inset-0 bg-black/40"></div>
+
+  <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold">{heading}</h1>
+    {subheading && <p class="mt-4 text-lg sm:text-xl">{subheading}</p>}
+    {ctaText && ctaHref && (
+      <a
+        href={ctaHref}
+        class="mt-8 inline-block bg-white text-gray-900 font-semibold px-6 py-3 rounded-lg shadow hover:bg-gray-200 transition"
+      >
+        {ctaText}
+      </a>
+    )}
+  </div>
+</section>

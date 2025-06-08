@@ -1,0 +1,63 @@
+---
+interface Service {
+  title: string;
+  description: string;
+  image?: string; // Optional image path for service
+}
+
+const {
+  heading = "What We Offer",
+  subheading = "Tailored photography experiences for every occasion.",
+  services = [
+    {
+      title: "Real Estate Photography",
+      description: "Showcase properties with high-quality, wide-angle shots that sell.",
+      image: "/images/services/real-estate.jpg"
+    },
+    {
+      title: "Portrait Sessions",
+      description: "Professional portraits in studio or on-location for individuals or couples.",
+      image: "/images/services/portraits.jpg"
+    },
+    {
+      title: "Engagement & Couples",
+      description: "Celebrate love with natural, emotion-filled couple photography.",
+      image: "/images/services/engagement.jpg"
+    },
+    {
+      title: "Social Media Content",
+      description: "Consistent, branded content for creators and businesses alike.",
+      image: "/images/services/social.jpg"
+    }
+  ]
+} = Astro.props;
+---
+
+<section class="py-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">{heading}</h2>
+    {subheading && <p class="mt-4 text-lg text-gray-600">{subheading}</p>}
+
+    <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
+      {services.map((service, i) => (
+        <div
+          class="bg-white rounded-2xl shadow transition hover:shadow-xl transform hover:-translate-y-1 duration-300"
+          key={i}
+        >
+          {service.image && (
+            <img
+              src={service.image}
+              alt={service.title}
+              class="w-full h-40 object-cover rounded-t-2xl"
+              loading="lazy"
+            />
+          )}
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-900">{service.title}</h3>
+            <p class="mt-2 text-gray-600 text-sm">{service.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

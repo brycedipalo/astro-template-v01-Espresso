@@ -1,0 +1,51 @@
+---
+// components/Services.astro
+
+interface Service {
+  title: string;
+  description: string;
+  icon?: string; // Optional path to an icon or image
+}
+
+const {
+  heading = "Our Services",
+  subheading = "Tailored photography experiences for every occasion.",
+  services = [
+    {
+      title: "Wedding Photography",
+      description: "Capture your special day with timeless, elegant photos you'll treasure forever."
+    },
+    {
+      title: "Event Coverage",
+      description: "From corporate functions to family celebrations, we document every detail with care."
+    },
+    {
+      title: "Portrait Sessions",
+      description: "Professional portraits in studio or on-location for individuals, couples, and families."
+    },
+    {
+      title: "Product Photography",
+      description: "Clean, high-quality product shots that elevate your brand and increase sales."
+    }
+  ]
+} = Astro.props;
+---
+
+<section class="py-20 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">{heading}</h2>
+    {subheading && <p class="mt-4 text-lg text-gray-600">{subheading}</p>}
+
+    <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
+      {services.map((service, i) => (
+        <div class="bg-white rounded-2xl shadow p-6" key={i}>
+          {service.icon && (
+            <img src={service.icon} alt={`${service.title} icon`} class="h-12 w-12 mb-4" />
+          )}
+          <h3 class="text-xl font-semibold text-gray-900">{service.title}</h3>
+          <p class="mt-2 text-gray-600 text-sm">{service.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

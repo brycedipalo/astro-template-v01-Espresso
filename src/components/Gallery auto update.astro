@@ -1,0 +1,33 @@
+---
+const imageModules = import.meta.glob('/src/assets/gallery/*.{jpg,jpeg,png}', { eager: true });
+const images = Object.values(imageModules).map((mod) => mod.default);
+
+// Organize into 4 columns
+const columnCount = 4;
+const columns = Array.from({ length: columnCount }, () => []);
+images.forEach((img, i) => {
+  columns[i % columnCount].push(img);
+});
+
+console.log(images);
+{JSON.stringify(images)}
+---
+
+
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+  {columns.map((column, columnIndex) => (
+    <div class="grid gap-4" key={columnIndex}>
+      {column.map((src, imgIndex) => (
+        <div key={imgIndex}>
+          <img
+            src={src}
+            alt={`Gallery image ${columnIndex * column.length + imgIndex + 1}`}
+            class="h-auto max-w-full rounded-lg"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  ))}
+</div>
