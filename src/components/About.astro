@@ -1,0 +1,28 @@
+---
+const {
+  heading = "About Sohana Photography",
+  intro = "Capturing your moments with passion and creativity.",
+  bio = `With over 10 years of experience in professional photography, we specialize in creating timeless images that tell your unique story. Whether it's portraits, events, or real estate, we bring dedication and artistry to every shoot.`,
+  imageSrc = "/images/about/headshot.jpg",
+  imageAlt = "Photographer portrait"
+} = Astro.props;
+---
+
+<section class="py-20 bg-gray-50">
+  <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+    <img
+      src={imageSrc}
+      alt={imageAlt}
+      class="w-48 h-48 rounded-full object-cover shadow-lg"
+      loading="lazy"
+      width="192"
+      height="192"
+    />
+
+    <div class="max-w-xl text-center md:text-left">
+      <h2 class="text-3xl font-bold text-gray-900">{heading}</h2>
+      <p class="mt-2 text-lg text-gray-700">{intro}</p>
+      <p class="mt-4 text-gray-600">{bio}</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,53 @@
+---
+const allImages = import.meta.glob('/src/assets/portfolio/**/*.{jpg,jpeg,png}', { eager: true });
+
+const projects = {};
+
+for (const [path, mod] of Object.entries(allImages)) {
+  const segments = path.split('/');
+  const folder = segments[segments.length - 2]; // Project folder name
+  const filename = segments[segments.length - 1];
+
+  const src = mod.default.src || mod;
+
+  if (!projects[folder]) {
+    projects[folder] = {
+      title: folder.replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+      images: [],
+    };
+  }
+
+  projects[folder].images.push({
+    src,
+    alt: filename.split('.')[0],
+  });
+}
+
+const projectList = Object.values(projects);
+---
+
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl sm:text-4xl font-bold text-center text-gray-900">Portfolio</h2>
+    <p class="mt-4 text-lg text-gray-600 text-center">Featured Projects</p>
+
+    <div class="mt-12 grid gap-12">
+      {projectList.map((project, i) => (
+        <div key={i} class="bg-gray-50 rounded-2xl shadow p-6">
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">{project.title}</h3>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {project.images.map((img, j) => (
+              <img
+                key={j}
+                src={img.src}
+                alt={img.alt}
+                loading="lazy"
+                class="w-full h-48 object-cover rounded-lg"
+              />
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

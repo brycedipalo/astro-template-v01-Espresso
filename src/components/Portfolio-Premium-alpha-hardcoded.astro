@@ -1,0 +1,59 @@
+---
+const projects = [
+  {
+    title: "Beach Engagement",
+    description: "Romantic beachside engagement shoot at sunset.",
+    images: [
+      '/src/assets/portfolio/beach-1.jpg',
+      '/src/assets/portfolio/beach-2.jpg',
+      '/src/assets/portfolio/beach-3.jpg'
+    ],
+    link: "/portfolio/beach-engagement"
+  },
+  {
+    title: "Modern Real Estate",
+    description: "Showcasing luxury interiors and architectural lines.",
+    images: [
+      '/src/assets/portfolio/realestate-1.jpg',
+      '/src/assets/portfolio/realestate-2.jpg',
+      '/src/assets/portfolio/realestate-3.jpg'
+    ],
+    link: "/portfolio/modern-realestate"
+  }
+];
+---
+
+<section class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 text-center">Portfolio</h2>
+    <p class="mt-4 text-lg text-gray-600 text-center">A selection of featured work</p>
+
+    <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-8">
+      {projects.map((project, i) => (
+        <div key={i} class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+          <div class="grid grid-cols-3 gap-1">
+            {project.images.map((src, j) => (
+              <img
+                key={j}
+                src={src}
+                alt={`${project.title} ${j + 1}`}
+                loading="lazy"
+                class="object-cover w-full h-32 sm:h-40 lg:h-48"
+              />
+            ))}
+          </div>
+          <div class="p-4">
+            <h3 class="text-lg font-semibold text-gray-800">{project.title}</h3>
+            <p class="mt-2 text-gray-600 text-sm">{project.description}</p>
+            <a
+              href={project.link}
+              class="inline-block mt-4 text-sm font-medium text-blue-600 hover:text-blue-800"
+            >
+              View Full Session →
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
