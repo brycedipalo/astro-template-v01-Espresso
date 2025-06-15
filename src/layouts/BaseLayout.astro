@@ -7,7 +7,7 @@ import { icons } from "../utils/icons";
 const buttonLinks = [
   { href: "https://www.instagram.com/blessy_takes_pictures_", label: "Instagram", icon: icons.instagram },
   { href: "https://www.facebook.com", label: "Facebook", icon: icons.facebook },
-  { href: "/contact", label: "Get Started", styleType: "primary" },
+  //{ href: "https://www.github.com", label: "Github", icon: icons.github },
 ];
 
 const navLinks = [
@@ -16,6 +16,9 @@ const navLinks = [
   { href: '/services', label: 'Services' },
   { href: '/contact', label: 'Contact' },
 ];
+
+const logoSrc ="https://flowbite.com/docs/images/logo.svg";
+const logoAlt ="Logo";
 
 ---
 
@@ -29,8 +32,8 @@ const navLinks = [
   </head>
   <body class="bg-gray-100">
     <Header
-      logoSrc="./logo.svg"
-      logoAlt="Template Logo"
+      logoSrc = {logoSrc},
+      logoAlt = {logoAlt},
       navLinks={navLinks}
       buttonLinks={buttonLinks}
     />
